@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sales Projection – Wizard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/wizard.js') }}"></script>
+</head>
+<body>
+  <!-- Aura background (lightweight CSS blobs) -->
+  <div class="aura" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a href="{{ url_for('landing') }}" class="brand-link">Sales Projection</a>
+      <nav class="topnav">
+        <a href="{{ url_for('about_model') }}">About Model</a>
+        <a href="{{ url_for('how_to_use') }}">How to Use</a>
+        <button class="btn btn-ghost" id="themeToggle" type="button">Toggle Theme</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <div class="wizard">
+        <div class="row between" style="margin-bottom:14px; gap:12px; flex-wrap:wrap;">
+          <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
+            Sales Forecast Wizard • Filters • Insights
+          </div>
+          <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
+            Scenario • Compare • PDF Report
+          </div>
+        </div>
+
+        <div class="wizard-steps">
+          <div class="step-pill active" data-step="1">1. Type</div>
+          <div class="step-pill" data-step="2">2. Filters</div>
+          <div class="step-pill" data-step="3">3. Results</div>
+        </div>
+
+        <!-- Step 1 -->
+        <section class="card" id="step1">
+          <h2>Select Prediction Type</h2>
+          <p class="muted">Choose how you want to forecast future sales.</p>
+
+          <div class="grid3">
+            <label class="radio-card">
+              <input type="radio" name="freq" value="weekly" />
+              <div>
+                <div class="radio-title">Weekly</div>
+                <div class="radio-sub">Next 13 weeks</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="freq" value="monthly" checked />
+              <div>
+                <div class="radio-title">Monthly</div>
+                <div class="radio-sub">Next 12 months</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="freq" value="yearly" />
+              <div>
+                <div class="radio-title">Yearly</div>
+                <div class="radio-sub">Next 12 months + year totals</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="card-inner">
+            <h3>Forecast Scenario</h3>
+            <p class="muted small">Choose a scenario to simulate conservative vs aggressive projections.</p>
+
+            <div class="scenario-toggle" role="group" aria-label="Scenario toggle">
+              <button class="scenario-btn" data-scenario="conservative" type="button">📉 Conservative</button>
+              <button class="scenario-btn active" data-scenario="base" type="button">⚪ Base</button>
+              <button class="scenario-btn" data-scenario="aggressive" type="button">📈 Aggressive</button>
+            </div>
+
+            <div class="muted small" style="margin-top:8px;">
+              Scenario affects forecast + KPI calculations.
+            </div>
+          </div>
+
+          <div class="row between" style="margin-top:14px;">
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="modeToggle" />
+                <span class="slider"></span>
+              </label>
+              <span class="switch-label">Advanced mode (recompute)</span>
+            </div>
+            <button class="btn btn-primary shine" id="toStep2" type="button">Next</button>
+          </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="card hidden" id="step2">
+          <h2>Select Filters</h2>
+          <p class="muted">Filter your forecast by Category, Region and Segment. Use <strong>All</strong> for overall sales.</p>
+
+          <div class="grid3">
+            <div>
+              <label class="label">Category</label>
+              <select id="category">
+                <option value="All">All</option>
+                {% for c in opts.categories %}
+                <option value="{{ c }}">{{ c }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <label class="label">Region</label>
+              <select id="region">
+                <option value="All">All</option>
+                {% for r in opts.regions %}
+                <option value="{{ r }}">{{ r }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <label class="label">Segment</label>
+              <select id="segment">
+                <option value="All">All</option>
+                {% for s in opts.segments %}
+                <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="row between">
+            <button class="btn" id="backTo1" type="button">Back</button>
+            <button class="btn btn-primary shine" id="runForecast" type="button">Run Forecast</button>
+          </div>
+
+          <div class="loading hidden" id="loading">
+            <div class="spinner"></div>
+            <div>
+              <div class="loading-title">Forecasting...</div>
+              <div class="muted">Generating predictions and insights</div>
+            </div>
+          </div>
+
+          <div class="alert hidden" id="errorBox"></div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="card hidden" id="step3">
+          <div class="row between" style="flex-wrap:wrap;">
+            <div>
+              <h2>Results</h2>
+              <div class="muted" id="subtitle"></div>
+              <div style="margin-top:8px; display:flex; gap:10px; flex-wrap:wrap;">
+                <span class="badge" id="snapshotTags"></span>
+                <span class="badge" id="confidenceBadge"></span>
+              </div>
+            </div>
+
+            <div class="row" style="flex-wrap:wrap;">
+              <button class="btn" id="backTo2" type="button">Back</button>
+              <button class="btn" id="compareBtn" type="button" style="display:none;">Compare with previous</button>
+              <a class="btn" id="pdfBtn" href="#">Download PDF</a>
+              <a class="btn btn-primary shine" id="downloadBtn" href="#">Download CSV</a>
+            </div>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">Last 3 months (Actual)</div>
+              <div class="kpi-value" id="kpiLast"></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Next 3 months (Forecast)</div>
+              <div class="kpi-value" id="kpiNext"></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Growth</div>
+              <div class="kpi-value" id="kpiGrowth"></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <canvas id="chart"></canvas>
+            <div class="muted small" id="metaLine"></div>
+            <div class="muted small" id="compareDelta" style="margin-top:6px;"></div>
+          </div>
+
+          <div class="insights-grid">
+            <div class="insight">
+              <div class="insight-title">Best predicted period</div>
+              <div id="bestMonth"></div>
+            </div>
+            <div class="insight">
+              <div class="insight-title">Seasonality</div>
+              <div id="seasonality"></div>
+            </div>
+            <div class="insight">
+              <div class="insight-title">Anomaly</div>
+              <div id="anomaly"></div>
+            </div>
+          </div>
+
+          <div class="card-inner">
+            <h3>Forecast Table</h3>
+            <div class="table-wrap">
+              <table class="table" id="forecastTable">
+                <thead>
+                  <tr><th>Date</th><th>Predicted Sales</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card-inner">
+            <h3>Year-wise totals (Past + Predicted)</h3>
+            <div class="table-wrap">
+              <table class="table" id="yearTable">
+                <thead>
+                  <tr><th>Year</th><th>Actual</th><th>Forecast</th><th>Total</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card-inner">
+            <h3>Business Recommendations</h3>
+            <ul id="recs" class="recs"></ul>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

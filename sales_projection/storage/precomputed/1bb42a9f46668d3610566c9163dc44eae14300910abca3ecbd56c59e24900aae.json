@@ -1,0 +1,428 @@
+{
+  "freq": "monthly",
+  "filters": {
+    "category": "Office Supplies",
+    "region": "All",
+    "segment": "All"
+  },
+  "chart": {
+    "actual": [
+      {
+        "date": "2014-01-01",
+        "value": 4851.08,
+        "type": "actual"
+      },
+      {
+        "date": "2014-02-01",
+        "value": 1071.724,
+        "type": "actual"
+      },
+      {
+        "date": "2014-03-01",
+        "value": 8605.879,
+        "type": "actual"
+      },
+      {
+        "date": "2014-04-01",
+        "value": 11155.074,
+        "type": "actual"
+      },
+      {
+        "date": "2014-05-01",
+        "value": 7135.624,
+        "type": "actual"
+      },
+      {
+        "date": "2014-06-01",
+        "value": 12953.037,
+        "type": "actual"
+      },
+      {
+        "date": "2014-07-01",
+        "value": 15121.208,
+        "type": "actual"
+      },
+      {
+        "date": "2014-08-01",
+        "value": 11379.462,
+        "type": "actual"
+      },
+      {
+        "date": "2014-09-01",
+        "value": 27423.298000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2014-10-01",
+        "value": 7211.128,
+        "type": "actual"
+      },
+      {
+        "date": "2014-11-01",
+        "value": 26862.436,
+        "type": "actual"
+      },
+      {
+        "date": "2014-12-01",
+        "value": 18006.462,
+        "type": "actual"
+      },
+      {
+        "date": "2015-01-01",
+        "value": 1808.78,
+        "type": "actual"
+      },
+      {
+        "date": "2015-02-01",
+        "value": 5368.067,
+        "type": "actual"
+      },
+      {
+        "date": "2015-03-01",
+        "value": 15882.547,
+        "type": "actual"
+      },
+      {
+        "date": "2015-04-01",
+        "value": 12558.558,
+        "type": "actual"
+      },
+      {
+        "date": "2015-05-01",
+        "value": 9113.736,
+        "type": "actual"
+      },
+      {
+        "date": "2015-06-01",
+        "value": 10647.747,
+        "type": "actual"
+      },
+      {
+        "date": "2015-07-01",
+        "value": 4719.939,
+        "type": "actual"
+      },
+      {
+        "date": "2015-08-01",
+        "value": 11735.108,
+        "type": "actual"
+      },
+      {
+        "date": "2015-09-01",
+        "value": 19305.767,
+        "type": "actual"
+      },
+      {
+        "date": "2015-10-01",
+        "value": 8673.41,
+        "type": "actual"
+      },
+      {
+        "date": "2015-11-01",
+        "value": 21218.13,
+        "type": "actual"
+      },
+      {
+        "date": "2015-12-01",
+        "value": 16201.673999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2016-01-01",
+        "value": 5299.682,
+        "type": "actual"
+      },
+      {
+        "date": "2016-02-01",
+        "value": 6794.349999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2016-03-01",
+        "value": 17346.931,
+        "type": "actual"
+      },
+      {
+        "date": "2016-04-01",
+        "value": 10647.447,
+        "type": "actual"
+      },
+      {
+        "date": "2016-05-01",
+        "value": 13035.202,
+        "type": "actual"
+      },
+      {
+        "date": "2016-06-01",
+        "value": 10901.81,
+        "type": "actual"
+      },
+      {
+        "date": "2016-07-01",
+        "value": 12924.444,
+        "type": "actual"
+      },
+      {
+        "date": "2016-08-01",
+        "value": 8959.74,
+        "type": "actual"
+      },
+      {
+        "date": "2016-09-01",
+        "value": 23263.738,
+        "type": "actual"
+      },
+      {
+        "date": "2016-10-01",
+        "value": 16281.794,
+        "type": "actual"
+      },
+      {
+        "date": "2016-11-01",
+        "value": 20487.278,
+        "type": "actual"
+      },
+      {
+        "date": "2016-12-01",
+        "value": 37997.566,
+        "type": "actual"
+      },
+      {
+        "date": "2017-01-01",
+        "value": 21274.289,
+        "type": "actual"
+      },
+      {
+        "date": "2017-02-01",
+        "value": 7407.772,
+        "type": "actual"
+      },
+      {
+        "date": "2017-03-01",
+        "value": 14550.286,
+        "type": "actual"
+      },
+      {
+        "date": "2017-04-01",
+        "value": 15072.190999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2017-05-01",
+        "value": 13736.964,
+        "type": "actual"
+      },
+      {
+        "date": "2017-06-01",
+        "value": 16912.039,
+        "type": "actual"
+      },
+      {
+        "date": "2017-07-01",
+        "value": 10241.468,
+        "type": "actual"
+      },
+      {
+        "date": "2017-08-01",
+        "value": 30059.852,
+        "type": "actual"
+      },
+      {
+        "date": "2017-09-01",
+        "value": 31895.843,
+        "type": "actual"
+      },
+      {
+        "date": "2017-10-01",
+        "value": 23037.192,
+        "type": "actual"
+      },
+      {
+        "date": "2017-11-01",
+        "value": 31472.337,
+        "type": "actual"
+      },
+      {
+        "date": "2017-12-01",
+        "value": 30436.942,
+        "type": "actual"
+      }
+    ],
+    "forecast": [
+      {
+        "date": "2018-01-01",
+        "value": 14664.201171875,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-02-01",
+        "value": 12120.384765625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-03-01",
+        "value": 15887.44140625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-04-01",
+        "value": 12685.80859375,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-05-01",
+        "value": 16085.708984375,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-06-01",
+        "value": 17587.064453125,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-07-01",
+        "value": 13515.8837890625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-08-01",
+        "value": 30673.537109375,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-09-01",
+        "value": 32167.3515625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-10-01",
+        "value": 26633.134765625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-11-01",
+        "value": 32146.060546875,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-12-01",
+        "value": 30546.294921875,
+        "type": "forecast"
+      }
+    ]
+  },
+  "kpis": {
+    "last_periods_actual": 84946.47099999999,
+    "next_periods_forecast": 89325.490234375,
+    "growth_pct": 5.15503373221356,
+    "window_note": "3 months"
+  },
+  "insights": {
+    "seasonality": {
+      "top_months": [
+        12,
+        9
+      ],
+      "top_month_names": [
+        "Dec",
+        "Sep"
+      ],
+      "default_note": "Historically highest sales in Nov/Dec"
+    },
+    "best_predicted": {
+      "best_date": "2018-09-01",
+      "best_value": 32167.3515625
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "message": null
+    },
+    "recommendations": [
+      "Demand looks to be growing. Consider increasing inventory and ad budget for the next quarter.",
+      "Historically strong months: Dec, Sep. Plan campaigns and stock levels ahead of these months.",
+      "Best predicted period is around 2018-09-01. Prepare supply and staffing accordingly."
+    ]
+  },
+  "table": [
+    {
+      "date": "2018-01-01",
+      "predicted_sales": 14664.201171875
+    },
+    {
+      "date": "2018-02-01",
+      "predicted_sales": 12120.384765625
+    },
+    {
+      "date": "2018-03-01",
+      "predicted_sales": 15887.44140625
+    },
+    {
+      "date": "2018-04-01",
+      "predicted_sales": 12685.80859375
+    },
+    {
+      "date": "2018-05-01",
+      "predicted_sales": 16085.708984375
+    },
+    {
+      "date": "2018-06-01",
+      "predicted_sales": 17587.064453125
+    },
+    {
+      "date": "2018-07-01",
+      "predicted_sales": 13515.8837890625
+    },
+    {
+      "date": "2018-08-01",
+      "predicted_sales": 30673.537109375
+    },
+    {
+      "date": "2018-09-01",
+      "predicted_sales": 32167.3515625
+    },
+    {
+      "date": "2018-10-01",
+      "predicted_sales": 26633.134765625
+    },
+    {
+      "date": "2018-11-01",
+      "predicted_sales": 32146.060546875
+    },
+    {
+      "date": "2018-12-01",
+      "predicted_sales": 30546.294921875
+    }
+  ],
+  "year_table": [
+    {
+      "year": 2014,
+      "actual_sales": 151776.412,
+      "forecast_sales": 0.0,
+      "total": 151776.412
+    },
+    {
+      "year": 2015,
+      "actual_sales": 137233.463,
+      "forecast_sales": 0.0,
+      "total": 137233.463
+    },
+    {
+      "year": 2016,
+      "actual_sales": 183939.982,
+      "forecast_sales": 0.0,
+      "total": 183939.982
+    },
+    {
+      "year": 2017,
+      "actual_sales": 246097.175,
+      "forecast_sales": 0.0,
+      "total": 246097.175
+    },
+    {
+      "year": 2018,
+      "actual_sales": 0.0,
+      "forecast_sales": 254712.8720703125,
+      "total": 254712.8720703125
+    }
+  ]
+}

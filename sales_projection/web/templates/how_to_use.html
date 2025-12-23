@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to Use – Sales Projection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <script defer src="{{ url_for('static', filename='js/theme.js') }}"></script>
+</head>
+<body>
+  <!-- Aura background (lightweight CSS blobs) -->
+  <div class="aura" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a href="{{ url_for('landing') }}" class="brand-link">Sales Projection</a>
+      <nav class="topnav">
+        <a class="btn btn-primary shine" href="{{ url_for('wizard') }}" style="padding:8px 12px;">Start</a>
+        <a href="{{ url_for('about_model') }}">About Model</a>
+        <button class="btn btn-ghost" id="themeToggle" type="button">Toggle Theme</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <div class="row between" style="margin-bottom:14px; gap:12px; flex-wrap:wrap;">
+        <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
+          3-step workflow • Simple
+        </div>
+        <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
+          Fast cache • Advanced recompute
+        </div>
+      </div>
+
+      <section class="card">
+        <h2>How to Use</h2>
+        <ol>
+          <li><strong>Select prediction type</strong>: Weekly / Monthly / Yearly.</li>
+          <li><strong>Choose filters</strong>: Category, Region, Segment (or All).</li>
+          <li><strong>Click “Run Forecast”</strong>: view chart, KPIs, insights, and download CSV.</li>
+        </ol>
+
+        <h3>When to use Fast vs Advanced</h3>
+        <ul>
+          <li><strong>Fast mode</strong>: instant results using precomputed forecasts + caching.</li>
+          <li><strong>Advanced mode</strong>: recompute forecasts for your exact query (cached after first run).</li>
+        </ul>
+
+        <div class="note">
+          If you select filters with no data, the app will show a friendly message. Try selecting <strong>All</strong>.
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

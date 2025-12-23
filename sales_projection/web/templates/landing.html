@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sales Projection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <script defer src="{{ url_for('static', filename='js/theme.js') }}"></script>
+</head>
+<body>
+  <!-- Aura background (lightweight CSS blobs) -->
+  <div class="aura" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand-link" href="{{ url_for('landing') }}">Sales Projection</a>
+
+      <nav class="topnav">
+        <a href="{{ url_for('about_model') }}">About Model</a>
+        <a href="{{ url_for('how_to_use') }}">How to Use</a>
+
+        <button class="btn btn-ghost" id="themeToggle" type="button" title="Toggle dark/light">
+          Toggle Theme
+        </button>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="hero-card">
+        <div class="row between" style="margin-bottom:10px; gap:12px; flex-wrap:wrap;">
+          <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
+            Premium Analytics • Forecasting
+          </div>
+          <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
+            Flask • XGBoost • Time-series features
+          </div>
+        </div>
+
+        <h1 class="gradient-title">Sales Projection</h1>
+
+        <p class="tagline">
+          Forecast future sales from historical retail data —
+          with filters, KPIs, insights, scenarios, comparisons, exports, and PDF reporting.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary shine" href="{{ url_for('wizard') }}">Start Forecast</a>
+          <a class="btn" href="{{ url_for('about_model') }}">See Model Explanation</a>
+        </div>
+
+        <div class="hero-footnote">
+          <span>Weekly / Monthly / Yearly forecasts</span>
+          <span>Scenarios + Compare</span>
+          <span>CSV + PDF Report</span>
+        </div>
+
+        <div class="note" style="margin-top:16px;">
+          Dataset source:
+          <a class="link" href="https://www.kaggle.com/datasets/vivek468/superstore-dataset-final" target="_blank" rel="noopener noreferrer">
+            Superstore Dataset (Kaggle)
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

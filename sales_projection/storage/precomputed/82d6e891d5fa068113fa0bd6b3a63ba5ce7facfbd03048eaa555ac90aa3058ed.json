@@ -1,0 +1,1242 @@
+{
+  "freq": "weekly",
+  "filters": {
+    "category": "All",
+    "region": "West",
+    "segment": "All"
+  },
+  "chart": {
+    "actual": [
+      {
+        "date": "2014-01-06",
+        "value": 19.44,
+        "type": "actual"
+      },
+      {
+        "date": "2014-01-13",
+        "value": 1679.749,
+        "type": "actual"
+      },
+      {
+        "date": "2014-01-20",
+        "value": 482.118,
+        "type": "actual"
+      },
+      {
+        "date": "2014-01-27",
+        "value": 466.75,
+        "type": "actual"
+      },
+      {
+        "date": "2014-02-03",
+        "value": 400.128,
+        "type": "actual"
+      },
+      {
+        "date": "2014-02-10",
+        "value": 148.94400000000002,
+        "type": "actual"
+      },
+      {
+        "date": "2014-02-17",
+        "value": 711.478,
+        "type": "actual"
+      },
+      {
+        "date": "2014-02-24",
+        "value": 88.072,
+        "type": "actual"
+      },
+      {
+        "date": "2014-03-03",
+        "value": 1083.92,
+        "type": "actual"
+      },
+      {
+        "date": "2014-03-10",
+        "value": 2280.638,
+        "type": "actual"
+      },
+      {
+        "date": "2014-03-17",
+        "value": 302.196,
+        "type": "actual"
+      },
+      {
+        "date": "2014-03-24",
+        "value": 5809.824,
+        "type": "actual"
+      },
+      {
+        "date": "2014-03-31",
+        "value": 1532.32,
+        "type": "actual"
+      },
+      {
+        "date": "2014-04-07",
+        "value": 1630.15,
+        "type": "actual"
+      },
+      {
+        "date": "2014-04-14",
+        "value": 2870.131,
+        "type": "actual"
+      },
+      {
+        "date": "2014-04-21",
+        "value": 770.758,
+        "type": "actual"
+      },
+      {
+        "date": "2014-04-28",
+        "value": 4072.4480000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2014-05-05",
+        "value": 69.86,
+        "type": "actual"
+      },
+      {
+        "date": "2014-05-12",
+        "value": 2461.74,
+        "type": "actual"
+      },
+      {
+        "date": "2014-05-19",
+        "value": 782.206,
+        "type": "actual"
+      },
+      {
+        "date": "2014-05-26",
+        "value": 894.73,
+        "type": "actual"
+      },
+      {
+        "date": "2014-06-02",
+        "value": 2495.0299999999997,
+        "type": "actual"
+      },
+      {
+        "date": "2014-06-09",
+        "value": 4980.796,
+        "type": "actual"
+      },
+      {
+        "date": "2014-06-16",
+        "value": 14.52,
+        "type": "actual"
+      },
+      {
+        "date": "2014-06-23",
+        "value": 3671.5460000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2014-06-30",
+        "value": 829.4319999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2014-07-07",
+        "value": 889.328,
+        "type": "actual"
+      },
+      {
+        "date": "2014-07-14",
+        "value": 2693.279,
+        "type": "actual"
+      },
+      {
+        "date": "2014-07-21",
+        "value": 2330.314,
+        "type": "actual"
+      },
+      {
+        "date": "2014-07-28",
+        "value": 14527.792,
+        "type": "actual"
+      },
+      {
+        "date": "2014-08-04",
+        "value": 3828.0,
+        "type": "actual"
+      },
+      {
+        "date": "2014-08-11",
+        "value": 6728.6410000000005,
+        "type": "actual"
+      },
+      {
+        "date": "2014-08-18",
+        "value": 1397.058,
+        "type": "actual"
+      },
+      {
+        "date": "2014-08-25",
+        "value": 2025.012,
+        "type": "actual"
+      },
+      {
+        "date": "2014-09-01",
+        "value": 691.3,
+        "type": "actual"
+      },
+      {
+        "date": "2014-09-08",
+        "value": 2137.948,
+        "type": "actual"
+      },
+      {
+        "date": "2014-09-15",
+        "value": 2277.848,
+        "type": "actual"
+      },
+      {
+        "date": "2014-09-22",
+        "value": 3753.4480000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2014-09-29",
+        "value": 6634.177000000001,
+        "type": "actual"
+      },
+      {
+        "date": "2014-10-06",
+        "value": 1160.222,
+        "type": "actual"
+      },
+      {
+        "date": "2014-10-13",
+        "value": 3068.604,
+        "type": "actual"
+      },
+      {
+        "date": "2014-10-20",
+        "value": 898.73,
+        "type": "actual"
+      },
+      {
+        "date": "2014-10-27",
+        "value": 567.92,
+        "type": "actual"
+      },
+      {
+        "date": "2014-11-03",
+        "value": 6280.054,
+        "type": "actual"
+      },
+      {
+        "date": "2014-11-10",
+        "value": 4716.404,
+        "type": "actual"
+      },
+      {
+        "date": "2014-11-17",
+        "value": 7443.2025,
+        "type": "actual"
+      },
+      {
+        "date": "2014-11-24",
+        "value": 3460.868,
+        "type": "actual"
+      },
+      {
+        "date": "2014-12-01",
+        "value": 4425.754,
+        "type": "actual"
+      },
+      {
+        "date": "2014-12-08",
+        "value": 4689.66,
+        "type": "actual"
+      },
+      {
+        "date": "2014-12-15",
+        "value": 5485.130499999999,
+        "type": "actual"
+      },
+      {
+        "date": "2014-12-22",
+        "value": 7224.126,
+        "type": "actual"
+      },
+      {
+        "date": "2014-12-29",
+        "value": 6971.36,
+        "type": "actual"
+      },
+      {
+        "date": "2015-01-05",
+        "value": 1233.0330000000001,
+        "type": "actual"
+      },
+      {
+        "date": "2015-01-12",
+        "value": 31.538,
+        "type": "actual"
+      },
+      {
+        "date": "2015-01-19",
+        "value": 612.4580000000001,
+        "type": "actual"
+      },
+      {
+        "date": "2015-01-26",
+        "value": 226.38,
+        "type": "actual"
+      },
+      {
+        "date": "2015-02-02",
+        "value": 4951.256,
+        "type": "actual"
+      },
+      {
+        "date": "2015-02-09",
+        "value": 358.264,
+        "type": "actual"
+      },
+      {
+        "date": "2015-02-16",
+        "value": 752.0300000000001,
+        "type": "actual"
+      },
+      {
+        "date": "2015-02-23",
+        "value": 154.964,
+        "type": "actual"
+      },
+      {
+        "date": "2015-03-02",
+        "value": 1527.186,
+        "type": "actual"
+      },
+      {
+        "date": "2015-03-09",
+        "value": 1558.6519999999998,
+        "type": "actual"
+      },
+      {
+        "date": "2015-03-16",
+        "value": 1636.162,
+        "type": "actual"
+      },
+      {
+        "date": "2015-03-23",
+        "value": 7386.188,
+        "type": "actual"
+      },
+      {
+        "date": "2015-03-30",
+        "value": 4092.88,
+        "type": "actual"
+      },
+      {
+        "date": "2015-04-06",
+        "value": 1315.7800000000002,
+        "type": "actual"
+      },
+      {
+        "date": "2015-04-13",
+        "value": 3230.132,
+        "type": "actual"
+      },
+      {
+        "date": "2015-04-20",
+        "value": 3732.2780000000002,
+        "type": "actual"
+      },
+      {
+        "date": "2015-04-27",
+        "value": 723.384,
+        "type": "actual"
+      },
+      {
+        "date": "2015-05-04",
+        "value": 1368.33,
+        "type": "actual"
+      },
+      {
+        "date": "2015-05-11",
+        "value": 243.904,
+        "type": "actual"
+      },
+      {
+        "date": "2015-05-18",
+        "value": 2836.2635,
+        "type": "actual"
+      },
+      {
+        "date": "2015-05-25",
+        "value": 4890.518,
+        "type": "actual"
+      },
+      {
+        "date": "2015-06-01",
+        "value": 2769.85,
+        "type": "actual"
+      },
+      {
+        "date": "2015-06-08",
+        "value": 1134.1100000000001,
+        "type": "actual"
+      },
+      {
+        "date": "2015-06-15",
+        "value": 1254.8319999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2015-06-22",
+        "value": 873.234,
+        "type": "actual"
+      },
+      {
+        "date": "2015-06-29",
+        "value": 1815.0140000000001,
+        "type": "actual"
+      },
+      {
+        "date": "2015-07-06",
+        "value": 193.2,
+        "type": "actual"
+      },
+      {
+        "date": "2015-07-13",
+        "value": 171.608,
+        "type": "actual"
+      },
+      {
+        "date": "2015-07-20",
+        "value": 3627.223,
+        "type": "actual"
+      },
+      {
+        "date": "2015-07-27",
+        "value": 2871.665,
+        "type": "actual"
+      },
+      {
+        "date": "2015-08-03",
+        "value": 2080.094,
+        "type": "actual"
+      },
+      {
+        "date": "2015-08-10",
+        "value": 892.912,
+        "type": "actual"
+      },
+      {
+        "date": "2015-08-17",
+        "value": 3109.718,
+        "type": "actual"
+      },
+      {
+        "date": "2015-08-24",
+        "value": 1306.678,
+        "type": "actual"
+      },
+      {
+        "date": "2015-08-31",
+        "value": 5385.087,
+        "type": "actual"
+      },
+      {
+        "date": "2015-09-07",
+        "value": 3191.193,
+        "type": "actual"
+      },
+      {
+        "date": "2015-09-14",
+        "value": 3502.068,
+        "type": "actual"
+      },
+      {
+        "date": "2015-09-21",
+        "value": 1707.772,
+        "type": "actual"
+      },
+      {
+        "date": "2015-09-28",
+        "value": 5497.891,
+        "type": "actual"
+      },
+      {
+        "date": "2015-10-05",
+        "value": 2189.508,
+        "type": "actual"
+      },
+      {
+        "date": "2015-10-12",
+        "value": 684.306,
+        "type": "actual"
+      },
+      {
+        "date": "2015-10-19",
+        "value": 2266.214,
+        "type": "actual"
+      },
+      {
+        "date": "2015-10-26",
+        "value": 4970.829,
+        "type": "actual"
+      },
+      {
+        "date": "2015-11-02",
+        "value": 6139.372,
+        "type": "actual"
+      },
+      {
+        "date": "2015-11-09",
+        "value": 2464.471,
+        "type": "actual"
+      },
+      {
+        "date": "2015-11-16",
+        "value": 3994.994,
+        "type": "actual"
+      },
+      {
+        "date": "2015-11-23",
+        "value": 3910.364,
+        "type": "actual"
+      },
+      {
+        "date": "2015-11-30",
+        "value": 1945.518,
+        "type": "actual"
+      },
+      {
+        "date": "2015-12-07",
+        "value": 10465.633,
+        "type": "actual"
+      },
+      {
+        "date": "2015-12-14",
+        "value": 4552.697999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2015-12-21",
+        "value": 5277.335999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2015-12-28",
+        "value": 4147.882,
+        "type": "actual"
+      },
+      {
+        "date": "2016-01-04",
+        "value": 3853.784,
+        "type": "actual"
+      },
+      {
+        "date": "2016-01-11",
+        "value": 937.208,
+        "type": "actual"
+      },
+      {
+        "date": "2016-01-18",
+        "value": 102.21799999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2016-01-25",
+        "value": 1414.9560000000001,
+        "type": "actual"
+      },
+      {
+        "date": "2016-02-01",
+        "value": 1194.5,
+        "type": "actual"
+      },
+      {
+        "date": "2016-02-08",
+        "value": 1650.3139999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2016-02-15",
+        "value": 268.65,
+        "type": "actual"
+      },
+      {
+        "date": "2016-02-22",
+        "value": 1075.6779999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2016-02-29",
+        "value": 0.0,
+        "type": "actual"
+      },
+      {
+        "date": "2016-03-07",
+        "value": 237.604,
+        "type": "actual"
+      },
+      {
+        "date": "2016-03-14",
+        "value": 14916.848,
+        "type": "actual"
+      },
+      {
+        "date": "2016-03-21",
+        "value": 1646.363,
+        "type": "actual"
+      },
+      {
+        "date": "2016-03-28",
+        "value": 758.216,
+        "type": "actual"
+      },
+      {
+        "date": "2016-04-04",
+        "value": 61.70399999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2016-04-11",
+        "value": 2842.775,
+        "type": "actual"
+      },
+      {
+        "date": "2016-04-18",
+        "value": 3819.911,
+        "type": "actual"
+      },
+      {
+        "date": "2016-04-25",
+        "value": 3574.6910000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2016-05-02",
+        "value": 182.928,
+        "type": "actual"
+      },
+      {
+        "date": "2016-05-09",
+        "value": 2505.9,
+        "type": "actual"
+      },
+      {
+        "date": "2016-05-16",
+        "value": 714.938,
+        "type": "actual"
+      },
+      {
+        "date": "2016-05-23",
+        "value": 4102.173,
+        "type": "actual"
+      },
+      {
+        "date": "2016-05-30",
+        "value": 3371.236,
+        "type": "actual"
+      },
+      {
+        "date": "2016-06-06",
+        "value": 3955.758,
+        "type": "actual"
+      },
+      {
+        "date": "2016-06-13",
+        "value": 3272.8720000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2016-06-20",
+        "value": 4922.247,
+        "type": "actual"
+      },
+      {
+        "date": "2016-06-27",
+        "value": 6405.898,
+        "type": "actual"
+      },
+      {
+        "date": "2016-07-04",
+        "value": 3407.171,
+        "type": "actual"
+      },
+      {
+        "date": "2016-07-11",
+        "value": 4325.434,
+        "type": "actual"
+      },
+      {
+        "date": "2016-07-18",
+        "value": 4305.532,
+        "type": "actual"
+      },
+      {
+        "date": "2016-07-25",
+        "value": 1686.398,
+        "type": "actual"
+      },
+      {
+        "date": "2016-08-01",
+        "value": 2683.356,
+        "type": "actual"
+      },
+      {
+        "date": "2016-08-08",
+        "value": 2225.026,
+        "type": "actual"
+      },
+      {
+        "date": "2016-08-15",
+        "value": 870.5179999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2016-08-22",
+        "value": 3742.694,
+        "type": "actual"
+      },
+      {
+        "date": "2016-08-29",
+        "value": 3506.926,
+        "type": "actual"
+      },
+      {
+        "date": "2016-09-05",
+        "value": 6606.684,
+        "type": "actual"
+      },
+      {
+        "date": "2016-09-12",
+        "value": 5643.184,
+        "type": "actual"
+      },
+      {
+        "date": "2016-09-19",
+        "value": 4373.322,
+        "type": "actual"
+      },
+      {
+        "date": "2016-09-26",
+        "value": 5430.9565,
+        "type": "actual"
+      },
+      {
+        "date": "2016-10-03",
+        "value": 3231.0460000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2016-10-10",
+        "value": 2230.9280000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2016-10-17",
+        "value": 1543.552,
+        "type": "actual"
+      },
+      {
+        "date": "2016-10-24",
+        "value": 7436.174,
+        "type": "actual"
+      },
+      {
+        "date": "2016-10-31",
+        "value": 3136.724,
+        "type": "actual"
+      },
+      {
+        "date": "2016-11-07",
+        "value": 8485.009,
+        "type": "actual"
+      },
+      {
+        "date": "2016-11-14",
+        "value": 3795.754,
+        "type": "actual"
+      },
+      {
+        "date": "2016-11-21",
+        "value": 2724.218,
+        "type": "actual"
+      },
+      {
+        "date": "2016-11-28",
+        "value": 8918.024,
+        "type": "actual"
+      },
+      {
+        "date": "2016-12-05",
+        "value": 5316.824,
+        "type": "actual"
+      },
+      {
+        "date": "2016-12-12",
+        "value": 9246.771999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2016-12-19",
+        "value": 7508.707,
+        "type": "actual"
+      },
+      {
+        "date": "2016-12-26",
+        "value": 9956.159,
+        "type": "actual"
+      },
+      {
+        "date": "2017-01-02",
+        "value": 1584.058,
+        "type": "actual"
+      },
+      {
+        "date": "2017-01-09",
+        "value": 3296.052,
+        "type": "actual"
+      },
+      {
+        "date": "2017-01-16",
+        "value": 951.36,
+        "type": "actual"
+      },
+      {
+        "date": "2017-01-23",
+        "value": 5627.928,
+        "type": "actual"
+      },
+      {
+        "date": "2017-01-30",
+        "value": 1715.484,
+        "type": "actual"
+      },
+      {
+        "date": "2017-02-06",
+        "value": 2795.424,
+        "type": "actual"
+      },
+      {
+        "date": "2017-02-13",
+        "value": 2567.371,
+        "type": "actual"
+      },
+      {
+        "date": "2017-02-20",
+        "value": 1486.676,
+        "type": "actual"
+      },
+      {
+        "date": "2017-02-27",
+        "value": 2965.446,
+        "type": "actual"
+      },
+      {
+        "date": "2017-03-06",
+        "value": 3039.868,
+        "type": "actual"
+      },
+      {
+        "date": "2017-03-13",
+        "value": 3667.396,
+        "type": "actual"
+      },
+      {
+        "date": "2017-03-20",
+        "value": 3836.044,
+        "type": "actual"
+      },
+      {
+        "date": "2017-03-27",
+        "value": 16750.058,
+        "type": "actual"
+      },
+      {
+        "date": "2017-04-03",
+        "value": 7165.95,
+        "type": "actual"
+      },
+      {
+        "date": "2017-04-10",
+        "value": 440.31,
+        "type": "actual"
+      },
+      {
+        "date": "2017-04-17",
+        "value": 5380.808,
+        "type": "actual"
+      },
+      {
+        "date": "2017-04-24",
+        "value": 959.962,
+        "type": "actual"
+      },
+      {
+        "date": "2017-05-01",
+        "value": 1243.455,
+        "type": "actual"
+      },
+      {
+        "date": "2017-05-08",
+        "value": 6218.919000000001,
+        "type": "actual"
+      },
+      {
+        "date": "2017-05-15",
+        "value": 4002.789,
+        "type": "actual"
+      },
+      {
+        "date": "2017-05-22",
+        "value": 3497.2200000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2017-05-29",
+        "value": 1611.854,
+        "type": "actual"
+      },
+      {
+        "date": "2017-06-05",
+        "value": 1644.01,
+        "type": "actual"
+      },
+      {
+        "date": "2017-06-12",
+        "value": 4378.554999999999,
+        "type": "actual"
+      },
+      {
+        "date": "2017-06-19",
+        "value": 3321.7395,
+        "type": "actual"
+      },
+      {
+        "date": "2017-06-26",
+        "value": 1994.996,
+        "type": "actual"
+      },
+      {
+        "date": "2017-07-03",
+        "value": 9773.015,
+        "type": "actual"
+      },
+      {
+        "date": "2017-07-10",
+        "value": 1594.68,
+        "type": "actual"
+      },
+      {
+        "date": "2017-07-17",
+        "value": 4329.1849999999995,
+        "type": "actual"
+      },
+      {
+        "date": "2017-07-24",
+        "value": 5791.986,
+        "type": "actual"
+      },
+      {
+        "date": "2017-07-31",
+        "value": 4137.556,
+        "type": "actual"
+      },
+      {
+        "date": "2017-08-07",
+        "value": 3531.4120000000003,
+        "type": "actual"
+      },
+      {
+        "date": "2017-08-14",
+        "value": 2338.458,
+        "type": "actual"
+      },
+      {
+        "date": "2017-08-21",
+        "value": 13504.814,
+        "type": "actual"
+      },
+      {
+        "date": "2017-08-28",
+        "value": 4580.534,
+        "type": "actual"
+      },
+      {
+        "date": "2017-09-04",
+        "value": 8678.276,
+        "type": "actual"
+      },
+      {
+        "date": "2017-09-11",
+        "value": 6759.887,
+        "type": "actual"
+      },
+      {
+        "date": "2017-09-18",
+        "value": 6903.398,
+        "type": "actual"
+      },
+      {
+        "date": "2017-09-25",
+        "value": 4892.092,
+        "type": "actual"
+      },
+      {
+        "date": "2017-10-02",
+        "value": 6160.336,
+        "type": "actual"
+      },
+      {
+        "date": "2017-10-09",
+        "value": 3514.396,
+        "type": "actual"
+      },
+      {
+        "date": "2017-10-16",
+        "value": 8513.777,
+        "type": "actual"
+      },
+      {
+        "date": "2017-10-23",
+        "value": 1503.274,
+        "type": "actual"
+      },
+      {
+        "date": "2017-10-30",
+        "value": 3976.7129999999997,
+        "type": "actual"
+      },
+      {
+        "date": "2017-11-06",
+        "value": 10246.568,
+        "type": "actual"
+      },
+      {
+        "date": "2017-11-13",
+        "value": 9350.262,
+        "type": "actual"
+      },
+      {
+        "date": "2017-11-20",
+        "value": 4877.196,
+        "type": "actual"
+      },
+      {
+        "date": "2017-11-27",
+        "value": 4290.513,
+        "type": "actual"
+      },
+      {
+        "date": "2017-12-04",
+        "value": 7920.241,
+        "type": "actual"
+      },
+      {
+        "date": "2017-12-11",
+        "value": 9930.295,
+        "type": "actual"
+      },
+      {
+        "date": "2017-12-18",
+        "value": 2418.905,
+        "type": "actual"
+      },
+      {
+        "date": "2017-12-25",
+        "value": 7439.468,
+        "type": "actual"
+      },
+      {
+        "date": "2018-01-01",
+        "value": 2120.434,
+        "type": "actual"
+      }
+    ],
+    "forecast": [
+      {
+        "date": "2018-01-08",
+        "value": 4035.47119140625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-01-15",
+        "value": 2834.90673828125,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-01-22",
+        "value": 1657.3150634765625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-01-29",
+        "value": 3198.4384765625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-02-05",
+        "value": 2575.45751953125,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-02-12",
+        "value": 3247.92041015625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-02-19",
+        "value": 2980.6728515625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-02-26",
+        "value": 11603.228515625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-03-05",
+        "value": 3692.845458984375,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-03-12",
+        "value": 3104.358154296875,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-03-19",
+        "value": 3754.011962890625,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-03-26",
+        "value": 4147.330078125,
+        "type": "forecast"
+      },
+      {
+        "date": "2018-04-02",
+        "value": 5695.93994140625,
+        "type": "forecast"
+      }
+    ]
+  },
+  "kpis": {
+    "last_periods_actual": 76102.04199999999,
+    "next_periods_forecast": 52527.89636230469,
+    "growth_pct": -30.977021139190068,
+    "window_note": "13 periods"
+  },
+  "insights": {
+    "seasonality": {
+      "top_months": [
+        12,
+        11
+      ],
+      "top_month_names": [
+        "Dec",
+        "Nov"
+      ],
+      "default_note": "Historically highest sales in Nov/Dec"
+    },
+    "best_predicted": {
+      "best_date": "2018-02-26",
+      "best_value": 11603.228515625
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "message": null
+    },
+    "recommendations": [
+      "Forecast suggests a slowdown. Consider running promotions and optimizing product mix.",
+      "Historically strong months: Dec, Nov. Plan campaigns and stock levels ahead of these months.",
+      "Best predicted period is around 2018-02-26. Prepare supply and staffing accordingly."
+    ]
+  },
+  "table": [
+    {
+      "date": "2018-01-08",
+      "predicted_sales": 4035.47119140625
+    },
+    {
+      "date": "2018-01-15",
+      "predicted_sales": 2834.90673828125
+    },
+    {
+      "date": "2018-01-22",
+      "predicted_sales": 1657.3150634765625
+    },
+    {
+      "date": "2018-01-29",
+      "predicted_sales": 3198.4384765625
+    },
+    {
+      "date": "2018-02-05",
+      "predicted_sales": 2575.45751953125
+    },
+    {
+      "date": "2018-02-12",
+      "predicted_sales": 3247.92041015625
+    },
+    {
+      "date": "2018-02-19",
+      "predicted_sales": 2980.6728515625
+    },
+    {
+      "date": "2018-02-26",
+      "predicted_sales": 11603.228515625
+    },
+    {
+      "date": "2018-03-05",
+      "predicted_sales": 3692.845458984375
+    },
+    {
+      "date": "2018-03-12",
+      "predicted_sales": 3104.358154296875
+    },
+    {
+      "date": "2018-03-19",
+      "predicted_sales": 3754.011962890625
+    },
+    {
+      "date": "2018-03-26",
+      "predicted_sales": 4147.330078125
+    },
+    {
+      "date": "2018-04-02",
+      "predicted_sales": 5695.93994140625
+    }
+  ],
+  "year_table": [
+    {
+      "year": 2014,
+      "actual_sales": 146855.104,
+      "forecast_sales": 0.0,
+      "total": 146855.104
+    },
+    {
+      "year": 2015,
+      "actual_sales": 137254.8545,
+      "forecast_sales": 0.0,
+      "total": 137254.8545
+    },
+    {
+      "year": 2016,
+      "actual_sales": 190126.4625,
+      "forecast_sales": 0.0,
+      "total": 190126.4625
+    },
+    {
+      "year": 2017,
+      "actual_sales": 249100.9695,
+      "forecast_sales": 0.0,
+      "total": 249100.9695
+    },
+    {
+      "year": 2018,
+      "actual_sales": 2120.434,
+      "forecast_sales": 52527.89636230469,
+      "total": 54648.33036230469
+    }
+  ]
+}
