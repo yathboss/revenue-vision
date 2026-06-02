@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Dict, Any, Optional
-import numpy as np
+from typing import Any, Dict, List, Optional
+import statistics
 
 
 @dataclass
@@ -11,30 +11,34 @@ class Confidence:
     note: str
 
 
+def _clean(values: List[float]) -> list[float]:
+    out = []
+    for v in values:
+        if v is None:
+            continue
+        try:
+            out.append(float(v))
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
 def compute_confidence(history_values: List[float], freq: str) -> Confidence:
-    """
-    Lightweight, honest confidence label.
-    - Uses history length + volatility.
-    - Not a statistical CI; it's a UX trust indicator.
-    """
-    vals = np.array([v for v in history_values if v is not None], dtype=float)
-    n = int(vals.size)
+    vals = _clean(history_values)
+    n = len(vals)
 
     if n < 6:
         return Confidence("Low", "Very short history. Forecast may be unreliable.")
 
-    mean = float(np.mean(vals)) if n else 0.0
-    std = float(np.std(vals)) if n else 0.0
-    cv = (std / mean) if mean > 0 else 1.0  # coefficient of variation
+    mean = statistics.fmean(vals) if n else 0.0
+    std = statistics.pstdev(vals) if n > 1 else 0.0
+    cv = (std / mean) if mean > 0 else 1.0
 
-    # length thresholds by freq
     if freq == "weekly":
         length_score = 2 if n >= 52 else (1 if n >= 26 else 0)
     else:
-        # monthly/yearly are monthly series under the hood
         length_score = 2 if n >= 36 else (1 if n >= 18 else 0)
 
-    # volatility score (lower volatility -> better)
     if cv <= 0.35:
         vol_score = 2
     elif cv <= 0.60:
@@ -43,7 +47,6 @@ def compute_confidence(history_values: List[float], freq: str) -> Confidence:
         vol_score = 0
 
     score = length_score + vol_score
-
     if score >= 3:
         return Confidence("High", "Good history length and stable trend/seasonality.")
     if score == 2:
@@ -52,15 +55,13 @@ def compute_confidence(history_values: List[float], freq: str) -> Confidence:
 
 
 def build_seasonality_insight(history_dates: List[str], history_values: List[float]) -> Dict[str, Any]:
-    # Very lightweight month ranking, if history_dates are YYYY-MM or YYYY-MM-DD strings
-    month_names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     by_month = {i: [] for i in range(1, 13)}
 
     for d, v in zip(history_dates, history_values):
         if v is None:
             continue
         try:
-            # d could be "YYYY-MM" or "YYYY-MM-DD"
             m = int(str(d)[5:7])
             if 1 <= m <= 12:
                 by_month[m].append(float(v))
@@ -69,26 +70,27 @@ def build_seasonality_insight(history_dates: List[str], history_values: List[flo
 
     month_avg = []
     for m, arr in by_month.items():
-        if len(arr) > 0:
-            month_avg.append((m, float(np.mean(arr))))
+        if arr:
+            month_avg.append((m, statistics.fmean(arr)))
 
     month_avg.sort(key=lambda x: x[1], reverse=True)
-    top = [month_names[m-1] for (m, _) in month_avg[:3]]
+    top = [month_names[m - 1] for (m, _) in month_avg[:3]]
 
     return {
         "top_month_names": top,
-        "default_note": "Historically highest sales often occur in Nov/Dec (seasonal peak)."
+        "default_note": "Historically highest sales often occur in Nov/Dec (seasonal peak).",
     }
 
 
 def anomaly_insight(history_values: List[float]) -> Dict[str, Any]:
-    vals = np.array([v for v in history_values if v is not None], dtype=float)
-    if vals.size < 6:
+    vals = _clean(history_values)
+    if len(vals) < 6:
         return {"is_anomaly": False, "message": ""}
 
-    last = float(vals[-1])
-    mean = float(np.mean(vals[:-1]))
-    std = float(np.std(vals[:-1])) if vals.size > 2 else 0.0
+    last = vals[-1]
+    previous = vals[:-1]
+    mean = statistics.fmean(previous)
+    std = statistics.pstdev(previous) if len(previous) > 1 else 0.0
 
     if std <= 1e-9:
         return {"is_anomaly": False, "message": ""}
@@ -98,7 +100,7 @@ def anomaly_insight(history_values: List[float]) -> Dict[str, Any]:
         direction = "high" if z > 0 else "low"
         return {
             "is_anomaly": True,
-            "message": f"Last period unusually {direction} vs average (z={z:.1f})."
+            "message": f"Last period unusually {direction} vs average (z={z:.1f}).",
         }
     return {"is_anomaly": False, "message": ""}
 
@@ -106,7 +108,7 @@ def anomaly_insight(history_values: List[float]) -> Dict[str, Any]:
 def best_predicted_insight(forecast_dates: List[str], forecast_values: List[float]) -> Dict[str, Any]:
     if not forecast_dates or not forecast_values:
         return {"best_date": None, "best_value": None}
-    idx = int(np.argmax(np.array(forecast_values, dtype=float)))
+    idx = max(range(len(forecast_values)), key=lambda i: float(forecast_values[i]))
     return {"best_date": forecast_dates[idx], "best_value": float(forecast_values[idx])}
 
 
@@ -125,7 +127,7 @@ def recommendations_from_forecast(freq: str, growth_pct: Optional[float], season
         recs.append("Maintain current strategy; monitor weekly/monthly performance and adjust marketing spend.")
 
     if "Nov" in seasonality_top or "Dec" in seasonality_top:
-        recs.append("Prepare for seasonal peak (Nov–Dec): stock up and plan campaigns early.")
+        recs.append("Prepare for seasonal peak (Nov-Dec): stock up and plan campaigns early.")
 
     if freq == "weekly":
         recs.append("Track week-to-week volatility; adjust operations quickly based on short-term signals.")

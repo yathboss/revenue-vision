@@ -2,34 +2,26 @@ from __future__ import annotations
 
 import io
 import sys
+import csv
+import statistics
+from collections import defaultdict
+from calendar import monthrange
 from datetime import datetime, datetime as dt
 from dataclasses import asdict, is_dataclass
+from datetime import date, timedelta
 from pathlib import Path
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-
 from flask import Flask, jsonify, render_template, request, send_file, Response
 from flask.json.provider import DefaultJSONProvider
 
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas as pdf_canvas
-from reportlab.lib.units import cm
-from reportlab.lib import colors
-from reportlab.lib.utils import ImageReader
-
 try:
     from sales_projection.config import CACHE_DIR
-    from sales_projection.core.forecasting import recursive_forecast
     from sales_projection.core.service import run_forecast
 except ModuleNotFoundError:
     from config import CACHE_DIR
-    from core.forecasting import recursive_forecast
     from core.service import run_forecast
 
 
@@ -55,108 +47,134 @@ def ensure_dict(x):
 # ADAPTER: query params -> series_df + horizon + xgb_params + freq
 # ------------------------------------------------------------------
 def forecast_query(params: dict):
-    import pandas as pd
+    freq = (params.get("freq") or "monthly").lower()
+    horizon = 13 if freq == "weekly" else 12
 
-    # 1) Load data
-    try:
-        try:
-            from sales_projection.core.data_loader import load_superstore_data
-        except ModuleNotFoundError:
-            from core.data_loader import load_superstore_data
-        df = load_superstore_data()
-    except Exception:
-        data_path = Path(__file__).resolve().parent / "data" / "superstore.csv"
-        if data_path.exists():
-            df = pd.read_csv(data_path)
-        else:
-            df = pd.read_csv("sales_projection/data/superstore.csv")
+    data_path = Path(__file__).resolve().parent / "data" / "superstore.csv"
+    if not data_path.exists():
+        data_path = Path("data/superstore.csv")
+    if not data_path.exists():
+        data_path = Path("sales_projection/data/superstore.csv")
 
-    # 2) Date + Sales columns
-    if "Order Date" in df.columns:
-        df["Order Date"] = pd.to_datetime(df["Order Date"])
-        date_col = "Order Date"
-    elif "order_date" in df.columns:
-        df["order_date"] = pd.to_datetime(df["order_date"])
-        date_col = "order_date"
-    else:
-        date_candidates = [c for c in df.columns if "date" in c.lower()]
-        if not date_candidates:
-            raise ValueError("No date column found in dataset.")
-        date_col = date_candidates[0]
-        df[date_col] = pd.to_datetime(df[date_col])
+    category = params.get("category", "All")
+    region = params.get("region", "All")
+    segment = params.get("segment", "All")
 
-    if "Sales" in df.columns:
-        sales_col = "Sales"
-    elif "sales" in df.columns:
-        sales_col = "sales"
-    else:
-        raise ValueError("Sales column not found in dataset.")
+    grouped: dict[date, float] = defaultdict(float)
+    with data_path.open("r", encoding="utf-8-sig", newline="") as f:
+        rows = csv.DictReader(f)
+        for row in rows:
+            if category != "All" and row.get("Category") != category:
+                continue
+            if region != "All" and row.get("Region") != region:
+                continue
+            if segment != "All" and row.get("Segment") != segment:
+                continue
 
-    # 3) Filters
-    def apply_filter(col, val):
-        nonlocal df
-        if val and val != "All" and col in df.columns:
-            df = df[df[col] == val]
+            raw_date = row.get("Order Date") or row.get("order_date")
+            raw_sales = row.get("Sales") or row.get("sales")
+            if not raw_date or not raw_sales:
+                continue
 
-    apply_filter("Category", params.get("category", "All"))
-    apply_filter("Region", params.get("region", "All"))
-    apply_filter("Segment", params.get("segment", "All"))
+            order_date = date.fromisoformat(raw_date[:10])
+            if freq == "weekly":
+                period = order_date - timedelta(days=order_date.weekday())
+            else:
+                period = order_date.replace(day=1)
+            grouped[period] += float(raw_sales)
 
-    if df.empty:
+    if not grouped:
         raise ValueError("No data found for selected filters. Try selecting All.")
 
-    # 4) Frequency + horizon
-    freq = (params.get("freq") or "monthly").lower()
-    if freq == "weekly":
-        rule = "W"
-        horizon = 13
-    elif freq == "yearly":
-        # yearly = next 12 months (monthly points)
-        rule = "MS"
-        horizon = 12
-    else:
-        rule = "MS"
-        horizon = 12
-
-    series_df = (
-        df.set_index(date_col)[sales_col]
-        .resample(rule)
-        .sum()
-        .reset_index()
-        .rename(columns={date_col: "ds", sales_col: "y"})
-        .sort_values("ds")
-        .dropna()
-    )
-
-    if len(series_df) < 6:
+    actual_rows = sorted(grouped.items())
+    if len(actual_rows) < 6:
         raise ValueError("Not enough history for forecast. Try broader filters or All.")
 
-    # 5) XGB params
-    try:
-        try:
-            from sales_projection.core.model import DEFAULT_XGB_PARAMS
-        except ModuleNotFoundError:
-            from core.model import DEFAULT_XGB_PARAMS
-        xgb_params = DEFAULT_XGB_PARAMS
-    except Exception:
-        xgb_params = {
-            "n_estimators": 400,
-            "max_depth": 6,
-            "learning_rate": 0.05,
-            "subsample": 0.9,
-            "colsample_bytree": 0.9,
-            "random_state": 42,
-        }
+    actual_values = [v for _, v in actual_rows]
+    forecast_dates = _future_periods(actual_rows[-1][0], horizon, freq)
+    forecast_values = _forecast_values(actual_rows, forecast_dates, freq)
 
-    # 6) Forecast
-    result = recursive_forecast(
-        series_df=series_df,
-        horizon=horizon,
-        xgb_params=xgb_params,
-        freq=freq,
-    )
+    chart_actual = [{"date": d.isoformat(), "value": float(v)} for d, v in actual_rows]
+    chart_forecast = [{"date": d.isoformat(), "value": float(v)} for d, v in zip(forecast_dates, forecast_values)]
+    table = [{"date": d.isoformat(), "predicted_sales": float(v)} for d, v in zip(forecast_dates, forecast_values)]
 
-    return ensure_dict(result)
+    last3_actual = sum(actual_values[-3:])
+    next3_forecast = sum(forecast_values[:3])
+    growth_pct = ((next3_forecast - last3_actual) / last3_actual * 100.0) if last3_actual else 0.0
+
+    year_map: dict[int, dict[str, float]] = defaultdict(lambda: {"actual_sales": 0.0, "forecast_sales": 0.0})
+    for d, v in actual_rows:
+        year_map[d.year]["actual_sales"] += float(v)
+    for d, v in zip(forecast_dates, forecast_values):
+        year_map[d.year]["forecast_sales"] += float(v)
+
+    year_table = []
+    for year in sorted(year_map):
+        actual = year_map[year]["actual_sales"]
+        forecast = year_map[year]["forecast_sales"]
+        year_table.append({"year": year, "actual_sales": actual, "forecast_sales": forecast, "total": actual + forecast})
+
+    return {
+        "freq": freq,
+        "filters": {"category": category, "region": region, "segment": segment},
+        "source": "lightweight",
+        "chart": {"actual": chart_actual, "forecast": chart_forecast},
+        "kpis": {
+            "last_periods_actual": last3_actual,
+            "next_periods_forecast": next3_forecast,
+            "growth_pct": growth_pct,
+        },
+        "table": table,
+        "year_table": year_table,
+        "insights": {
+            "best_predicted": {"best_date": None, "best_value": None},
+            "seasonality": {"top_month_names": [], "default_note": ""},
+            "anomaly": {"is_anomaly": False, "message": ""},
+            "recommendations": [],
+        },
+    }
+
+
+def _future_periods(last_period: date, horizon: int, freq: str) -> list[date]:
+    if freq == "weekly":
+        return [last_period + timedelta(days=7 * i) for i in range(1, horizon + 1)]
+
+    out = []
+    year = last_period.year
+    month = last_period.month
+    for _ in range(horizon):
+        month += 1
+        if month > 12:
+            month = 1
+            year += 1
+        out.append(date(year, month, 1))
+    return out
+
+
+def _forecast_values(actual_rows: list[tuple[date, float]], forecast_dates: list[date], freq: str) -> list[float]:
+    values = [v for _, v in actual_rows]
+    recent = values[-6:] if len(values) >= 6 else values
+    previous = values[-12:-6] if len(values) >= 12 else values[:-6]
+    recent_avg = statistics.fmean(recent)
+    previous_avg = statistics.fmean(previous) if previous else recent_avg
+    trend = recent_avg / previous_avg if previous_avg else 1.0
+    trend = max(0.80, min(1.20, trend))
+
+    if freq == "weekly":
+        base = statistics.fmean(values[-8:] if len(values) >= 8 else values)
+        return [max(0.0, base * (trend ** (i / 8))) for i in range(1, len(forecast_dates) + 1)]
+
+    by_month: dict[int, list[float]] = defaultdict(list)
+    for d, v in actual_rows:
+        by_month[d.month].append(v)
+
+    forecasts = []
+    for i, d in enumerate(forecast_dates, start=1):
+        month_vals = by_month.get(d.month) or recent
+        seasonal_base = statistics.fmean(month_vals)
+        blended = (seasonal_base * 0.68) + (recent_avg * 0.32)
+        forecasts.append(max(0.0, blended * (trend ** (i / 12))))
+    return forecasts
 
 
 # ------------------------------------------------------------------
@@ -170,11 +188,9 @@ def create_app() -> Flask:
     )
 
     # ✅ JSON provider for datetime/pandas Timestamp
-    import pandas as pd
-
     class CustomJSONProvider(DefaultJSONProvider):
         def default(self, obj):
-            if isinstance(obj, (pd.Timestamp, dt)):
+            if isinstance(obj, dt):
                 return obj.isoformat()
             return super().default(obj)
 
@@ -270,6 +286,8 @@ def create_app() -> Flask:
     # ----------------------------
     @app.get("/report.pdf")
     def report_pdf():
+        return jsonify({"message": "PDF export is unavailable on the Vercel deployment. Use CSV download instead."}), 501
+
         params = {
             "freq": request.args.get("freq", "monthly"),
             "category": request.args.get("category", "All"),
