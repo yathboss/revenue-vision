@@ -74,7 +74,7 @@ async function runForecast(){
   loading.classList.remove("hidden");
   const loadingTitle = loading.querySelector(".loading-title");
   const loadingSub = loading.querySelector(".muted");
-  if(loadingTitle) loadingTitle.textContent = "Forecasting…";
+  if(loadingTitle) loadingTitle.textContent = "Forecasting...";
   if(loadingSub) loadingSub.textContent = "Crunching trends, seasonality, and insights";
 
   errorBox.classList.add("hidden");
@@ -92,7 +92,6 @@ async function runForecast(){
 
     setStep(3);
     requestAnimationFrame(() => renderResults(data, params));
-
   }catch(err){
     errorBox.textContent = err.message;
     errorBox.classList.remove("hidden");
@@ -124,7 +123,6 @@ function savePrevious(current){
 }
 
 function computeNext3Total(payload){
-  // Use payload.table first 3 periods (already scenario-adjusted by backend)
   const rows = (payload.table || []).slice(0, 3);
   return rows.reduce((s, r) => s + (r.predicted_sales || 0), 0);
 }
@@ -133,38 +131,33 @@ function renderResults(payload, params){
   const f = payload.filters;
 
   document.getElementById("subtitle").textContent =
-    `Freq: ${payload.freq} • Category: ${f.category} • Region: ${f.region} • Segment: ${f.segment}`;
+    `Freq: ${payload.freq} / Category: ${f.category} / Region: ${f.region} / Segment: ${f.segment}`;
 
-  // Snapshot tags
   const tags = [
-    `Dataset: Superstore (Kaggle)`,
+    "Dataset: Superstore (Kaggle)",
     `Scenario: ${payload.scenario || "base"}`,
     `Mode: ${payload.mode || params.get("mode")}`,
   ];
-  document.getElementById("snapshotTags").textContent = tags.join("  •  ");
+  document.getElementById("snapshotTags").textContent = tags.join(" / ");
 
-  // Confidence badge
   const conf = payload.confidence || {label:"-", note:""};
   const badge = document.getElementById("confidenceBadge");
   badge.textContent = conf.label ? `Confidence: ${conf.label}` : "Confidence: -";
   badge.title = conf.note || "";
 
-  // KPIs
   document.getElementById("kpiLast").textContent = money(payload.kpis.last_periods_actual);
   document.getElementById("kpiNext").textContent = money(payload.kpis.next_periods_forecast);
   document.getElementById("kpiGrowth").textContent = pct(payload.kpis.growth_pct);
 
-  // Meta line
   const modeText = (payload.mode || params.get("mode")) === "advanced" ? "Advanced" : "Fast";
   const cacheText = payload.cache_hit ? "Cache: Hit" : "Cache: Miss";
   const sourceText = payload.source ? `Source: ${payload.source}` : "";
-  const meta = `Mode: ${modeText} • Scenario: ${payload.scenario || params.get("scenario") || "base"} • ${cacheText}${sourceText ? " • " + sourceText : ""}`;
+  const meta = `Mode: ${modeText} / Scenario: ${payload.scenario || params.get("scenario") || "base"} / ${cacheText}${sourceText ? " / " + sourceText : ""}`;
   document.getElementById("metaLine").textContent = meta;
 
-  // Insights
   const best = payload.insights.best_predicted;
   document.getElementById("bestMonth").textContent =
-    best.best_date ? `${best.best_date} (₹ ${money(best.best_value)})` : "-";
+    best.best_date ? `${best.best_date} (Rs ${money(best.best_value)})` : "-";
 
   const seas = payload.insights.seasonality;
   const topNames = (seas.top_month_names || []).join(", ");
@@ -175,7 +168,6 @@ function renderResults(payload, params){
   document.getElementById("anomaly").textContent =
     anom.is_anomaly ? anom.message : "No unusual spike/drop detected.";
 
-  // Recommendations
   const recs = document.getElementById("recs");
   recs.innerHTML = "";
   (payload.insights.recommendations || []).forEach(t => {
@@ -184,7 +176,6 @@ function renderResults(payload, params){
     recs.appendChild(li);
   });
 
-  // Chart data
   const actualMap = new Map(payload.chart.actual.map(p => [p.date, p.value]));
   const forecastMap = new Map(payload.chart.forecast.map(p => [p.date, p.value]));
   const allDates = Array.from(new Set([...actualMap.keys(), ...forecastMap.keys()])).sort();
@@ -192,7 +183,6 @@ function renderResults(payload, params){
   const actualSeries = allDates.map(d => actualMap.has(d) ? actualMap.get(d) : null);
   const forecastSeries = allDates.map(d => forecastMap.has(d) ? forecastMap.get(d) : null);
 
-  // Optional compare overlay
   const prev = getPrevious();
   const compareBtn = document.getElementById("compareBtn");
   const compareDelta = document.getElementById("compareDelta");
@@ -201,7 +191,6 @@ function renderResults(payload, params){
   let showCompare = false;
 
   if(prev && prev.chart && prev.chart.forecast && Array.isArray(prev.chart.forecast)){
-    // Align previous forecast by date
     const prevMap = new Map(prev.chart.forecast.map(p => [p.date, p.value]));
     prevSeries = allDates.map(d => prevMap.has(d) ? prevMap.get(d) : null);
     showCompare = true;
@@ -210,17 +199,15 @@ function renderResults(payload, params){
   compareBtn.style.display = showCompare ? "inline-flex" : "none";
   compareDelta.textContent = "";
 
-  // Chart theme vars
-  const colorMuted = cssVar("--muted", "#9ca3af");
-  const colorActual = cssVar("--primary3", "#7c3aed");  // violet
-  const colorForecast = cssVar("--primary2", "#3fe0d0"); // cyan
-  const colorPrev = cssVar("--primary", "#ff4ecd");     // magenta
-  const gridColor = "rgba(255,255,255,0.08)";
+  const colorMuted = cssVar("--muted", "#8d958f");
+  const colorActual = cssVar("--accent", "#d6e864");
+  const colorForecast = cssVar("--primary", "#2fffa8");
+  const colorPrev = cssVar("--primary-3", "#6ef7d3");
+  const gridColor = "rgba(255,255,255,0.07)";
 
   const ctx = document.getElementById("chart").getContext("2d");
   if(chartInstance) chartInstance.destroy();
 
-  // Start with base datasets (no prev unless enabled)
   const datasetsBase = [
     {
       label: "Actual",
@@ -255,7 +242,7 @@ function renderResults(payload, params){
             label: (ctx) => {
               const v = ctx.parsed.y;
               if(v === null || v === undefined) return `${ctx.dataset.label}: -`;
-              return `${ctx.dataset.label}: ₹ ${money(v)}`;
+              return `${ctx.dataset.label}: Rs ${money(v)}`;
             }
           }
         }
@@ -267,13 +254,11 @@ function renderResults(payload, params){
     }
   });
 
-  // Compare button behavior (overlay previous)
   compareBtn.onclick = () => {
     if(!prevSeries) return;
 
     const already = chartInstance.data.datasets.some(ds => ds.label === "Previous Forecast");
     if(already){
-      // toggle off
       chartInstance.data.datasets = datasetsBase.slice();
       chartInstance.update();
       compareDelta.textContent = "";
@@ -294,7 +279,6 @@ function renderResults(payload, params){
     ];
     chartInstance.update();
 
-    // Delta text: next 3 total difference
     const prevPayload = {
       table: (prev.chart.forecast || []).slice(0, 3).map(p => ({predicted_sales: p.value}))
     };
@@ -304,11 +288,10 @@ function renderResults(payload, params){
     const diffPct = prevTotal ? (diff / prevTotal) * 100 : null;
 
     compareDelta.textContent = (diffPct === null)
-      ? `Change in next 3 forecast total: ₹ ${money(diff)}`
-      : `Change in next 3 forecast total: ₹ ${money(diff)} (${pct(diffPct)})`;
+      ? `Change in next 3 forecast total: Rs ${money(diff)}`
+      : `Change in next 3 forecast total: Rs ${money(diff)} (${pct(diffPct)})`;
   };
 
-  // Tables
   const tbody = document.querySelector("#forecastTable tbody");
   tbody.innerHTML = "";
   (payload.table || []).forEach(r => {
@@ -325,18 +308,15 @@ function renderResults(payload, params){
     ybody.appendChild(tr);
   });
 
-  // Download links
   document.getElementById("downloadBtn").setAttribute("href", `/download?${params.toString()}`);
   document.getElementById("pdfBtn").setAttribute("href", `/report.pdf?${params.toString()}`);
 
-  // Save previous after render (so compare uses last run)
   savePrevious(payload);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   setStep(1);
 
-  // Scenario buttons
   document.querySelectorAll(".scenario-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       setScenario(btn.getAttribute("data-scenario"));
@@ -346,6 +326,5 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("toStep2").addEventListener("click", () => setStep(2));
   document.getElementById("backTo1").addEventListener("click", () => setStep(1));
   document.getElementById("backTo2").addEventListener("click", () => setStep(2));
-
   document.getElementById("runForecast").addEventListener("click", runForecast);
 });

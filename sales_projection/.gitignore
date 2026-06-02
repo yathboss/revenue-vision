@@ -36,3 +36,9 @@ sales_projection/cache/
 # IDE
 .vscode/
 .idea/
+
+# Dataset (do not upload raw data)
+data/superstore.csv
+
+# Cache / precomputed forecasts
+storage/

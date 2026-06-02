@@ -3,39 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sales Projection – Wizard</title>
+  <title>Sales Projection - Wizard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script defer src="{{ url_for('static', filename='js/theme.js') }}"></script>
   <script defer src="{{ url_for('static', filename='js/wizard.js') }}"></script>
 </head>
 <body>
-  <!-- Aura background (lightweight CSS blobs) -->
-  <div class="aura" aria-hidden="true">
-    <span class="blob b1"></span>
-    <span class="blob b2"></span>
-    <span class="blob b3"></span>
-  </div>
-
   <div class="app-shell">
     <header class="topbar">
       <a href="{{ url_for('landing') }}" class="brand-link">Sales Projection</a>
       <nav class="topnav">
         <a href="{{ url_for('about_model') }}">About Model</a>
         <a href="{{ url_for('how_to_use') }}">How to Use</a>
-        <button class="btn btn-ghost" id="themeToggle" type="button">Toggle Theme</button>
       </nav>
     </header>
 
     <main class="container">
       <div class="wizard">
         <div class="row between" style="margin-bottom:14px; gap:12px; flex-wrap:wrap;">
-          <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
-            Sales Forecast Wizard • Filters • Insights
-          </div>
-          <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
-            Scenario • Compare • PDF Report
-          </div>
+          <div class="page-kicker">Sales Forecast Wizard / Filters / Insights</div>
+          <div class="page-kicker">Scenario / Compare / PDF Report</div>
         </div>
 
         <div class="wizard-steps">
@@ -44,7 +34,6 @@
           <div class="step-pill" data-step="3">3. Results</div>
         </div>
 
-        <!-- Step 1 -->
         <section class="card" id="step1">
           <h2>Select Prediction Type</h2>
           <p class="muted">Choose how you want to forecast future sales.</p>
@@ -78,9 +67,9 @@
             <p class="muted small">Choose a scenario to simulate conservative vs aggressive projections.</p>
 
             <div class="scenario-toggle" role="group" aria-label="Scenario toggle">
-              <button class="scenario-btn" data-scenario="conservative" type="button">📉 Conservative</button>
-              <button class="scenario-btn active" data-scenario="base" type="button">⚪ Base</button>
-              <button class="scenario-btn" data-scenario="aggressive" type="button">📈 Aggressive</button>
+              <button class="scenario-btn" data-scenario="conservative" type="button">Conservative</button>
+              <button class="scenario-btn active" data-scenario="base" type="button">Base</button>
+              <button class="scenario-btn" data-scenario="aggressive" type="button">Aggressive</button>
             </div>
 
             <div class="muted small" style="margin-top:8px;">
@@ -96,11 +85,10 @@
               </label>
               <span class="switch-label">Advanced mode (recompute)</span>
             </div>
-            <button class="btn btn-primary shine" id="toStep2" type="button">Next</button>
+            <button class="btn btn-primary" id="toStep2" type="button">Next</button>
           </div>
         </section>
 
-        <!-- Step 2 -->
         <section class="card hidden" id="step2">
           <h2>Select Filters</h2>
           <p class="muted">Filter your forecast by Category, Region and Segment. Use <strong>All</strong> for overall sales.</p>
@@ -137,7 +125,7 @@
 
           <div class="row between">
             <button class="btn" id="backTo1" type="button">Back</button>
-            <button class="btn btn-primary shine" id="runForecast" type="button">Run Forecast</button>
+            <button class="btn btn-primary" id="runForecast" type="button">Run Forecast</button>
           </div>
 
           <div class="loading hidden" id="loading">
@@ -151,7 +139,6 @@
           <div class="alert hidden" id="errorBox"></div>
         </section>
 
-        <!-- Step 3 -->
         <section class="card hidden" id="step3">
           <div class="row between" style="flex-wrap:wrap;">
             <div>
@@ -167,7 +154,7 @@
               <button class="btn" id="backTo2" type="button">Back</button>
               <button class="btn" id="compareBtn" type="button" style="display:none;">Compare with previous</button>
               <a class="btn" id="pdfBtn" href="#">Download PDF</a>
-              <a class="btn btn-primary shine" id="downloadBtn" href="#">Download CSV</a>
+              <a class="btn btn-primary" id="downloadBtn" href="#">Download CSV</a>
             </div>
           </div>
 

@@ -1,9 +1,13 @@
 from __future__ import annotations
 
 import io
+import sys
 from datetime import datetime, datetime as dt
 from dataclasses import asdict, is_dataclass
 from pathlib import Path
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import matplotlib
 matplotlib.use("Agg")

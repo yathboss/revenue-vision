@@ -3,41 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About Model – Sales Projection</title>
+  <title>About Model - Sales Projection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
-  <script defer src="{{ url_for('static', filename='js/theme.js') }}"></script>
 </head>
 <body>
-  <!-- Aura background (lightweight CSS blobs) -->
-  <div class="aura" aria-hidden="true">
-    <span class="blob b1"></span>
-    <span class="blob b2"></span>
-    <span class="blob b3"></span>
-  </div>
-
   <div class="app-shell">
     <header class="topbar">
       <a href="{{ url_for('landing') }}" class="brand-link">Sales Projection</a>
       <nav class="topnav">
-        <a class="btn btn-primary shine" href="{{ url_for('wizard') }}" style="padding:8px 12px;">Start</a>
+        <a class="btn btn-primary" href="{{ url_for('wizard') }}" style="padding:8px 12px;">Start</a>
         <a href="{{ url_for('how_to_use') }}">How to Use</a>
-        <button class="btn btn-ghost" id="themeToggle" type="button">Toggle Theme</button>
       </nav>
     </header>
 
     <main class="container">
       <div class="row between" style="margin-bottom:14px; gap:12px; flex-wrap:wrap;">
-        <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
-          Explainability • Beginner friendly
-        </div>
-        <div class="muted small" style="padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.03);">
-          XGBoost • Lag features • Rolling averages
-        </div>
+        <div class="page-kicker">Explainability / Beginner friendly</div>
+        <div class="page-kicker">XGBoost / Lag features / Rolling averages</div>
       </div>
 
       <section class="card">
         <h2>About the Forecasting Model</h2>
-        <p class="muted">Beginner-friendly explanation — professional implementation.</p>
+        <p class="muted">Beginner-friendly explanation with a professional implementation.</p>
 
         <h3>What is XGBoost?</h3>
         <p>
@@ -47,7 +37,7 @@
 
         <h3>How do we use XGBoost for time-series?</h3>
         <p>
-          Time-series means data changes over time (sales per week/month). XGBoost needs a normal “table” of features,
+          Time-series means data changes over time (sales per week/month). XGBoost needs a normal table of features,
           so we convert time into features.
         </p>
 
