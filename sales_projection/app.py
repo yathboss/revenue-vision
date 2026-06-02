@@ -23,9 +23,14 @@ from reportlab.lib.units import cm
 from reportlab.lib import colors
 from reportlab.lib.utils import ImageReader
 
-from sales_projection.config import CACHE_DIR
-from sales_projection.core.forecasting import recursive_forecast
-from sales_projection.core.service import run_forecast
+try:
+    from sales_projection.config import CACHE_DIR
+    from sales_projection.core.forecasting import recursive_forecast
+    from sales_projection.core.service import run_forecast
+except ModuleNotFoundError:
+    from config import CACHE_DIR
+    from core.forecasting import recursive_forecast
+    from core.service import run_forecast
 
 
 KAGGLE_URL = "https://www.kaggle.com/datasets/vivek468/superstore-dataset-final"
@@ -54,7 +59,10 @@ def forecast_query(params: dict):
 
     # 1) Load data
     try:
-        from sales_projection.core.data_loader import load_superstore_data
+        try:
+            from sales_projection.core.data_loader import load_superstore_data
+        except ModuleNotFoundError:
+            from core.data_loader import load_superstore_data
         df = load_superstore_data()
     except Exception:
         data_path = Path(__file__).resolve().parent / "data" / "superstore.csv"
@@ -125,7 +133,10 @@ def forecast_query(params: dict):
 
     # 5) XGB params
     try:
-        from sales_projection.core.model import DEFAULT_XGB_PARAMS
+        try:
+            from sales_projection.core.model import DEFAULT_XGB_PARAMS
+        except ModuleNotFoundError:
+            from core.model import DEFAULT_XGB_PARAMS
         xgb_params = DEFAULT_XGB_PARAMS
     except Exception:
         xgb_params = {
@@ -175,7 +186,10 @@ def create_app() -> Flask:
 
     @app.get("/wizard")
     def wizard():
-        from sales_projection.core.data_loader import get_filter_options
+        try:
+            from sales_projection.core.data_loader import get_filter_options
+        except ModuleNotFoundError:
+            from core.data_loader import get_filter_options
         opts = get_filter_options()
         return render_template(
             "wizard.html",

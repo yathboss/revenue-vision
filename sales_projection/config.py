@@ -1,14 +1,15 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_PATH = BASE_DIR / "data" / "superstore.csv"
 
-STORAGE_DIR = BASE_DIR / "storage"
+STORAGE_DIR = Path("/tmp/sales_projection/storage") if os.environ.get("VERCEL") else BASE_DIR / "storage"
 MODELS_DIR = STORAGE_DIR / "models"
 CACHE_DIR = STORAGE_DIR / "cache"
-PRECOMPUTED_DIR = STORAGE_DIR / "precomputed"
+PRECOMPUTED_DIR = BASE_DIR / "storage" / "precomputed"
 
 HORIZON = {
     "weekly": 13,
